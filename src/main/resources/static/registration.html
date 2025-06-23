@@ -5,52 +5,74 @@
     <title>Student Registration</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #eef2f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e6f0ff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
-        .form-container {
+        .form-box {
             background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            width: 300px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
         }
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            color: #003366;
         }
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
             border: 1px solid #ccc;
+            font-size: 14px;
         }
         input[type="submit"] {
             width: 100%;
-            padding: 10px;
-            background-color: #0077cc;
+            padding: 12px;
+            background-color: #0066cc;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
         }
         input[type="submit"]:hover {
-            background-color: #005fa3;
+            background-color: #004999;
         }
     </style>
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirm = document.getElementById("confirmPassword").value;
+
+            if (password !== confirm) {
+                alert("Passwords do not match!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
-<div class="form-container">
+<div class="form-box">
     <h2>Register</h2>
-    <form action="/student/register" method="post">
+    <form action="/student/register" method="post" onsubmit="return validateForm();">
+        <input type="text" name="name" placeholder="Name" required><br>
+        <input type="text" name="studentId" placeholder="Student ID" required><br>
+        <input type="text" name="phoneNo" placeholder="Phone Number" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="password" name="password" id="password" placeholder="Password" required minlength="6"><br>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br>
         <input type="submit" value="Register">
     </form>
 </div>
