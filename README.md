@@ -10,7 +10,7 @@ A full-stack web application designed to manage and access academic question pap
 - **Frontend**: HTML + CSS (no JavaScript)
 - **Database**: MySQL
 - **Security**: Spring Security, BCrypt for password encryption
-- **Tools**: Maven, IntelliJ/VS Code, Git, GitHub
+- **Tools**: Maven, IntelliJ, Git, GitHub
 
 ---
 
