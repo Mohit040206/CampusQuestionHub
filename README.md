@@ -1,76 +1,87 @@
 # Campus Question Hub
 
-A full-stack web application designed to manage and access academic question papers securely. This platform provides role-based access for **Admins** and **Students**, enabling seamless upload, search, and download of past year papers across various courses.
+A full-stack web application built with Spring Boot that allows **Admin users** to securely upload academic question papers categorized by Course, Subject, and Year. The application supports **role-based login** and provides students with access to browse and download papers (feature coming soon).
 
 ---
 
 ## 🚀 Tech Stack
 
-- **Backend**: Spring Boot (Java)
-- **Frontend**: HTML + CSS (no JavaScript)
-- **Database**: MySQL
-- **Security**: Spring Security, BCrypt for password encryption
-- **Tools**: Maven, IntelliJ, Git, GitHub
+- **Backend:** Spring Boot (Java)
+- **Frontend:** HTML + CSS (No JavaScript)
+- **Database:** MySQL
+- **Security:** Spring Security + BCrypt (for password encryption)
+- **Build Tool:** Maven
+- **IDE:** IntelliJ IDEA
+- **Version Control:** Git & GitHub
 
 ---
 
-## 🔐 Features (Completed)
+## ✅ Features Implemented
 
-- ✅ Admin & Student login with role-based authentication
-- ✅ Student registration with validation (name, email, student ID, phone number)
-- ✅ Passwords encrypted using BCrypt
-- ✅ Landing page with dropdown menus for navigation
-- ✅ UI theming consistent across pages
-- ✅ GitHub integration with full version control
+- Admin & Student login (via custom login forms)
+- Student registration with:
+  - Full form validation
+  - Fields: Name, Email, Student ID, Phone Number, Password
+- Passwords encrypted using BCrypt
+- Landing page with role dropdowns (Admin / Student)
+- Admin functionalities:
+  - Upload PDF-based question papers (Course, Subject, Year)
+  - View list of uploaded papers
+  - Download any paper by ID
+- Secure file storage using `@Lob` (stores PDF as byte[])
+- GitHub connected — all versions committed
 
 ---
 
 ## ⚙️ How to Run (Local Setup)
 
-1. **Clone this repo**:
-   ```bash
-   git clone https://github.com/Mohit040206/CampusQuestionHub.git
-   cd CampusQuestionHub
-   ```
-2. **Open in your IDE** (IntelliJ, VS Code, etc.)
-3. **Create MySQL database**:
-   ```sql
-   CREATE DATABASE campus_question_hub;
-   ```
-4. **Update `application.properties`** with your DB username/password
-5. **Run the project**:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-6. **Access the app**:
-   Navigate to `http://localhost:8080`
+bash
+git clone https://github.com/Mohit040206/CampusQuestionHub.git
+cd CampusQuestionHub
+Open the project in IntelliJ IDEA (or your favorite IDE)
 
----
+Set up your MySQL database:
 
-## 🛠 Work in Progress
+sql
+Copy
+Edit
+CREATE DATABASE campus_question_hub;
+Update src/main/resources/application.properties with your DB credentials
 
-- [ ] Admin upload feature (papers by Course/Subject/Year)
-- [ ] Student dashboard to search and download files
-- [ ] College-wise registration and secure document access
-- [ ] Cloud storage integration (future scope)
+Run the application:
+./mvnw spring-boot:run
+Open the browser and go to:
+http://localhost:8080
 
----
+🛠 Work in Progress
+🔄 Student functionality to:
 
-## 📸 Screenshots
-*(Coming soon — after frontend upload/search pages are built)*
+View list of papers
 
----
+Download specific papers
 
-## 📄 License
-MIT License
+🔐 Role-based redirection (post login)
 
----
+🧠 Search functionality (filter by Course/Subject/Year)
 
-## 🙋‍♂️ Developer
-**Mohit Kumar Das**  
-*Aspiring Software Developer | Java & Spring Boot Enthusiast*  
-[GitHub Profile](https://github.com/Mohit040206)
+📤 File validation & size limit
 
----
+☁️ Future Scope: Cloud integration for storage (AWS S3, Firebase, etc.)
 
-Feel free to star ⭐ the repo or contribute suggestions/feedback!
+🧑‍🏫 Multi-college registration and ID verification system
+
+📸 Screenshots
+Coming soon — after full UI integration of paper list & search/download features.
+
+📄 License
+This project is licensed under the MIT License.
+
+🙋‍♂️ Developer
+Mohit Kumar Das
+Aspiring Software Developer | Java & Spring Boot Enthusiast
+GitHub Profile
+
+Feel free to ⭐ star this repo or submit ideas via Issues or PRs!
+
+
+
