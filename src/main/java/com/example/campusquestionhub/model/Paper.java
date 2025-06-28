@@ -15,13 +15,25 @@ public class Paper {
     private String course;
     private String subject;
     private int year;
-
     private String fileName;
-
     @Lob
     private byte[] fileData;
-
     private String uploadedBy;
+    private String filePath;
+
+    public long getId(){
+        return id;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+
 
     public String getCourse() {
         return course;
