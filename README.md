@@ -1,87 +1,116 @@
-# Campus Question Hub
+🏫 Campus Question Hub
+Campus Question Hub is a secure full-stack Java web application that allows Admins to upload academic papers and Students to view and download them. It provides clean role-based access with session and security management.
 
-A full-stack web application built with Spring Boot that allows **Admin users** to securely upload academic question papers categorized by Course, Subject, and Year. The application supports **role-based login** and provides students with access to browse and download papers (feature coming soon).
+🚀 Tech Stack
+Layer	Technology Used
+Backend	Java 21, Spring Boot 3.3.1
+Frontend	HTML, CSS (No JS used)
+Database	MySQL
+Security	Spring Security 6.3
+Build	Maven
 
----
+📌 Core Features
+👨‍🎓 Student Registration & Login
 
-## 🚀 Tech Stack
+Email, Password, Student ID, Phone
 
-- **Backend:** Spring Boot (Java)
-- **Frontend:** HTML + CSS (No JavaScript)
-- **Database:** MySQL
-- **Security:** Spring Security + BCrypt (for password encryption)
-- **Build Tool:** Maven
-- **IDE:** IntelliJ IDEA
-- **Version Control:** Git & GitHub
+Session-based login redirection
 
----
+👨‍🏫 Admin Login
 
-## ✅ Features Implemented
+Secure backend-only login (no registration)
 
-- Admin & Student login (via custom login forms)
-- Student registration with:
-  - Full form validation
-  - Fields: Name, Email, Student ID, Phone Number, Password
-- Passwords encrypted using BCrypt
-- Landing page with role dropdowns (Admin / Student)
-- Admin functionalities:
-  - Upload PDF-based question papers (Course, Subject, Year)
-  - View list of uploaded papers
-  - Download any paper by ID
-- Secure file storage using `@Lob` (stores PDF as byte[])
-- GitHub connected — all versions committed
+Upload PDF papers by title, course, subject, year
 
----
+🔐 Authentication & Authorization
 
-## ⚙️ How to Run (Local Setup)
+Role-based navigation (Admin/Student)
 
-bash
+Spring Security custom config
+
+Session timeout & logout handling
+
+📂 View Papers
+
+Dynamic paper listing from database
+
+Thymeleaf-based template
+
+Card UI for clean paper display
+
+⬇️ Download Papers
+
+Available to both Students and Admins
+
+Based on paper ID
+
+🛡️ Security Enhancements
+
+CSRF disabled (custom auth)
+
+Browser back-button disabled after logout
+
+No unauthorized page access without login
+
+🗂 Project Structure
+
+campusquestionhub/
+├── controller/
+│   ├── AuthController.java
+│   ├── ViewPaperController.java
+├── model/
+│   ├── Admin.java
+│   ├── Student.java
+│   ├── Paper.java
+├── repository/
+│   ├── AdminRepository.java
+│   ├── StudentRepository.java
+│   ├── PaperRepository.java
+├── service/
+│   ├── AdminService.java
+│   ├── StudentService.java
+├── config/
+│   ├── SecurityConfig.java
+│   ├── NoCacheFilter.java
+├── templates/
+│   ├── viewpapers.html
+│   └── (Thymeleaf based)
+└── static/
+    ├── index.html
+    ├── studentlogin.html
+    ├── adminhome.html
+    ├── etc.
+✅ July 1, 2025 - Updates Summary
+✅ Created ViewPaperController to render data from DB.
+
+✅ Added Thymeleaf template: viewpapers.html for paper cards.
+
+✅ Configured session checks to restrict unauthorized access.
+
+✅ Disabled page caching post-logout using a global filter.
+
+✅ Fixed template rendering issues.
+
+✅ SecurityConfig updated to allow viewpapers route properly.
+
+✅ Tested logout navigation and fixed browser back button issue.
+
+✅ All working perfectly now!
+
+
+### Student Home Page
+![homepage](https://github.com/user-attachments/assets/87cefd2a-836e-45d9-97f9-9d276f8fd229)
+
+
+
+
+📦 Run the Project Locally
+Clone the repository:
+
+
 git clone https://github.com/Mohit040206/CampusQuestionHub.git
 cd CampusQuestionHub
-Open the project in IntelliJ IDEA (or your favorite IDE)
+Set up your MySQL DB and update application.properties.
 
-Set up your MySQL database:
-
-sql
-Copy
-Edit
-CREATE DATABASE campus_question_hub;
-Update src/main/resources/application.properties with your DB credentials
-
-Run the application:
-./mvnw spring-boot:run
-Open the browser and go to:
-http://localhost:8080
-
-🛠 Work in Progress
-🔄 Student functionality to:
-
-View list of papers
-
-Download specific papers
-
-🔐 Role-based redirection (post login)
-
-🧠 Search functionality (filter by Course/Subject/Year)
-
-📤 File validation & size limit
-
-☁️ Future Scope: Cloud integration for storage (AWS S3, Firebase, etc.)
-
-🧑‍🏫 Multi-college registration and ID verification system
-
-📸 Screenshots
-Coming soon — after full UI integration of paper list & search/download features.
-
-📄 License
-This project is licensed under the MIT License.
-
-🙋‍♂️ Developer
-Mohit Kumar Das
-Aspiring Software Developer | Java & Spring Boot Enthusiast
-GitHub Profile
-
-Feel free to ⭐ star this repo or submit ideas via Issues or PRs!
-
-
-
+Run the app:
+mvn spring-boot:run
