@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
+    <meta charset="UTF-8">
+    <title>Admin Home - Campus Question Hub</title>
+    <style>
+        /* Same CSS styling as before */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e6f0ff, #f0f5ff);
+            color: #333;
+        }
+        html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+
+        header {
+            background-color: #005fa3;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .content {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            color: #003366;
+        }
+
+
+        .card-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            margin: 0;
+            color: #005fa3;
+        }
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .logout-btn {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Campus Question Hub</h1>
+    <nav>
+        <a href="/userlogout" onclick="return confirm('Do you want to logout and go to Home?');">Home</a>
+        <a href="/viewpapers">View Papers</a>
+        <a href="#">Download Papers</a>
+        <a href="#">Upload Paper</a>
+        <form action="/userlogout" method="get" style="display:inline;" onsubmit="return confirm('Are you sure you want to logout?');">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </nav>
+</header>
+
+<div class="content">
+    <h2>Welcome, Admin!</h2>
+    <p>You can view, download, and upload question papers here.</p>
+
+    <div class="card-section">
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="BCA">
+            <h3>BCA</h3>
+        </div>
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="BBA">
+            <h3>BBA</h3>
+        </div>
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="MCA">
+
+            <h3>MCA</h3>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Campus Question Hub | Designed for Learning By Mohit Kumar Das
+</footer>
+</body>
+</html>

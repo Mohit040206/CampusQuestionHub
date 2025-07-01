@@ -13,10 +13,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers
+                        .cacheControl(cache -> cache.disable())
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login.html","/upload.html","/index.html",
-                                "/registration.html","/studentlogin.html","/admin/login",
-                                "/student/login","/student/register",
+                                "/registration.html","/studentlogin.html","/adminhome.html","/studenthome.html","/viewpapers.html"
+                                ,"/admin/login", "/student/login","/viewpapers","/student/register",
                                 "/**" ).permitAll()
                         .anyRequest().authenticated()
                 )

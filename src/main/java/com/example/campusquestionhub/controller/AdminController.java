@@ -2,38 +2,41 @@ package com.example.campusquestionhub.controller;
 
 import com.example.campusquestionhub.model.Admin;
 import com.example.campusquestionhub.repository.AdminRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-import com.example.campusquestionhub.model.Admin;
-import com.example.campusquestionhub.repository.AdminRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
     private AdminRepository adminRepository;
 
-
     @PostMapping("/login")
-    public ResponseEntity<String> loginAdmin(@RequestParam String email, @RequestParam String password) {
+    public String loginAdmin(@RequestParam String email,
+                             @RequestParam String password,
+                             HttpSession session) {
         Optional<Admin> admin = adminRepository.findByEmail(email);
 
         if (admin.isPresent()) {
             if (admin.get().getPassword().equals(password)) {
-                return ResponseEntity.ok("Login successful");
+                // Save session data
+                session.setAttribute("email", admin.get().getEmail());
+                session.setAttribute("role", "ADMIN");
+
+                //  Redirect to admin home
+                return "redirect:/adminhome.html";
             } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+                //  Invalid credentials
+                return "redirect:/login.html?error=invalid";
             }
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Admin not found");
+            //  Admin not found
+            return "redirect:/login.html?error=notfound";
         }
     }
 }
