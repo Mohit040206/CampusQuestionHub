@@ -1,5 +1,4 @@
 package com.example.campusquestionhub.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,9 +16,9 @@ public class SecurityConfig {
                         .cacheControl(cache -> cache.disable())
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login.html","/upload.html","/index.html",
-                                "/registration.html","/studentlogin.html","/adminhome.html","/studenthome.html","/viewpapers.html"
-                                ,"/admin/login", "/student/login","/viewpapers","/student/register",
+                        .requestMatchers("/login.html","/upload","/index.html",
+                                "/registration.html","/studentlogin.html","/adminhome.html","/studenthome.html","/downloadpapers.html"
+                                ,"/admin/login", "/student/login","/admin/upload","/viewpapers","/admin/papers/download/{id}","/student/register",
                                 "/**" ).permitAll()
                         .anyRequest().authenticated()
                 )

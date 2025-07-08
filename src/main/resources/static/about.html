@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta charset="UTF-8">
+    <title>About - Campus Question Hub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e6f0ff, #f0f5ff);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+      header {
+            background-color: #005fa3;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+            top: 100%;
+            left: 0;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #003366;
+            padding: 0.75rem 1rem;
+            display: block;
+            text-decoration: none;
+            font-weight: normal;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e6f0ff;
+        }
+
+        .content {
+            flex: 1;
+            padding: 7rem 2rem 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #003366;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        ul {
+            margin-top: 0;
+            padding-left: 1.5rem;
+        }
+
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            background-color: #d9edf7;
+            border-left: 6px solid #31708f;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .contact {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f2f2f2;
+            border-radius: 6px;
+        }
+
+        .contact p {
+            margin: 0.4rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Campus Question Hub</h1>
+    <nav>
+        <a href="/index.html">Home</a>
+
+        <div class="dropdown">
+            <a href="#">Student</a>
+            <div class="dropdown-content">
+                <a href="/studentlogin.html">Student Login</a>
+                <a href="/registration.html">Student Register</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#">Admin</a>
+            <div class="dropdown-content">
+                <a href="/login.html">Admin Login</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="content">
+    <div class="section">
+        <h2>About Campus Question Hub</h2>
+        <p>
+            <strong>Campus Question Hub</strong> is a role-based academic paper sharing platform built as a real-world full-stack web application.
+            The aim is to simplify access to previous year question papers for students and empower admins with a secure upload and management interface.
+            This project is conceptualized, developed, and designed solely by <strong>Mohit Kumar Das</strong> as part of a learning initiative and a career-defining portfolio project.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Backend: Java 21 with Spring Boot 3.3</li>
+            <li>Security: Spring Security 6.3 with custom login/session handling</li>
+            <li>Frontend: HTML5 + CSS3 (manually created without frameworks or JavaScript)</li>
+            <li>Database: MySQL</li>
+            <li>Build Tool: Maven</li>
+            <li>Version Control: Git + GitHub</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Vision & Future Scope</h2>
+        <div class="highlight">
+            <p>
+                This platform is not just an academic submission — it's a vision for the future.
+                The ultimate goal is to scale Campus Question Hub for multiple colleges and universities, where each institution registers securely.
+                Admins can upload materials tied to their institution code, and students can access papers only after student ID validation.
+                Eventually, features like cloud-based file storage, OTP verification, and a page-reading AI module are planned to replace traditional systems.
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>About the Developer</h2>
+        <p>
+            My name is <strong>Mohit Kumar Das</strong>. I am passionate about building smart, real-world software solutions.
+            I developed this platform independently — from backend logic and Spring Security configuration to designing and styling the frontend using HTML and CSS.
+            Even without using JavaScript or frontend frameworks, I focused on creating a smooth, consistent user interface to enhance the user experience.
+            This is a solo project that reflects both my technical skills and my passion for development.
+        </p>
+        <p>You can explore the source code or connect with me using the contact links below.</p>
+    </div>
+
+    <div class="section contact">
+        <h3>Contact</h3>
+        <p><strong>Email:</strong> mohitkumarpath@email.com</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/Mohit040206" target="_blank">github.com/Mohit040206</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mohit-kumar-das-816416258/" target="_blank">linkedin.com/in/mohitkumardas</a></p>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Campus Question Hub | Designed for Learning By Mohit Kumar Das
+</footer>
+
+</body>
+</html>

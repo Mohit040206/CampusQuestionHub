@@ -4,10 +4,13 @@ import com.example.campusquestionhub.model.Paper;
 import com.example.campusquestionhub.repository.PaperRepository;
 import com.example.campusquestionhub.service.AdminService;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.*;
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class PaperController {
 
@@ -28,30 +31,29 @@ public class PaperController {
     @Autowired
     private PaperRepository paperRepository;
 
-
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadPaper(
+    public String uploadPaper(
             @RequestParam String course,
             @RequestParam String subject,
             @RequestParam int year,
-            @RequestParam MultipartFile file) {
+            @RequestParam MultipartFile file,
+            HttpSession session,
+            Model model) {
 
+        // 🔐 Session check
+        if (session.getAttribute("email") == null || session.getAttribute("role") == null) {
+            return "redirect:/index.html";
+        }
 
         try {
-            // Save file to disk
             String uploadDir = System.getProperty("user.dir") + "/uploads/";
-
             File dir = new File(uploadDir);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
+            if (!dir.exists()) dir.mkdirs();
 
             String originalFilename = file.getOriginalFilename();
             String filePath = uploadDir + UUID.randomUUID() + "_" + originalFilename;
-            File dest = new File(filePath);
-            file.transferTo(dest); // Save the file to disk
+            file.transferTo(new File(filePath));
 
-            // Save metadata in DB
             Paper paper = new Paper();
             paper.setCourse(course);
             paper.setSubject(subject);
@@ -60,16 +62,16 @@ public class PaperController {
             paper.setFilePath(filePath);
             paper.setUploadedBy("Admin");
 
-
             paperRepository.save(paper);
 
-            return ResponseEntity.ok("Paper uploaded successfully");
-
+            model.addAttribute("successMessage", "✅ Paper uploaded successfully!");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to upload: " + e.getMessage());
+            model.addAttribute("successMessage", "❌ Error: " + e.getMessage());
         }
+
+        return "upload";  // Stay on the same page
     }
+
 
 
     @GetMapping("/papers/view")

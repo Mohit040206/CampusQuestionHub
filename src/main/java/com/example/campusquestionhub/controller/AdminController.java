@@ -26,7 +26,7 @@ public class AdminController {
             if (admin.get().getPassword().equals(password)) {
                 // Save session data
                 session.setAttribute("email", admin.get().getEmail());
-                session.setAttribute("role", "ADMIN");
+                session.setAttribute("role", "admin");
 
                 //  Redirect to admin home
                 return "redirect:/adminhome.html";

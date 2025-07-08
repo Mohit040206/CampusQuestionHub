@@ -21,7 +21,7 @@ public class StudentController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    @ResponseBody
+   
     public String registerStudent(@RequestParam String email,
                                   @RequestParam String password,
                                   @RequestParam String name,
@@ -36,7 +36,7 @@ public class StudentController {
         student.setPhoneNo(phoneNo);
 
         studentRepository.save(student);
-        return "Registered Successfully";
+        return "redirect:/studentlogin.html";
     }
 
     @PostMapping("/login")

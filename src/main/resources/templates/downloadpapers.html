@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <meta charset="UTF-8">
+  <title>Download Papers - Campus Question Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e6f0ff, #f0f5ff);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #005fa3;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .content {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    form.search-form {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    form.search-form input,
+    form.search-form button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    form.search-form button {
+      background-color: #005fa3;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form.search-form button:hover {
+      background-color: #004080;
+    }
+
+    .card-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin: 0.5rem 0;
+      color: #003366;
+    }
+
+    .card p {
+      margin: 0.25rem 0;
+    }
+
+    .card a {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #005fa3;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .card a:hover {
+      background-color: #004080;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Campus Question Hub</h1>
+  <nav>
+    <a href="/userlogout" onclick="return confirm('Do you want to logout and go to Home?');">Home</a>
+    <a href="/viewpapers">Download Papers</a>
+    <a href="/upload">Upload</a>
+    <form action="/userlogout" method="get" onsubmit="return confirm('Logout?');">
+      <button type="submit" style="margin-left:20px; background:red; color:white; border:none; padding:0.5rem 1rem;">Logout</button>
+    </form>
+  </nav>
+</header>
+
+<div class="content">
+  <h2>Available Question Papers</h2>
+
+  <form action="/viewpapers/search" method="get" class="search-form">
+    <input type="text" name="course" placeholder="Course (e.g. BCA)">
+    <input type="text" name="subject" placeholder="Subject (e.g. Java)">
+    <input type="number" name="year" placeholder="Year (e.g. 2024)">
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="card-section">
+    <div th:each="paper : ${papers}" class="card">
+      <h3 th:text="${paper.fileName}">Paper Name</h3>
+      <p><strong>Course:</strong> <span th:text="${paper.course}">Course</span></p>
+      <p><strong>Subject:</strong> <span th:text="${paper.subject}">Subject</span></p>
+      <p><strong>Year:</strong> <span th:text="${paper.year}">Year</span></p>
+      <p><strong>Uploaded By:</strong> <span th:text="${paper.uploadedBy}">Admin</span></p>
+      <a th:href="@{'/admin/papers/download/' + ${paper.id}}">Download</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Campus Question Hub | Designed for Learning By Mohit Kumar Das
+</footer>
+</body>
+</html>
